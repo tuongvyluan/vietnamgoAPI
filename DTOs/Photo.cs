@@ -6,6 +6,11 @@
         {
             Images = new Images();
         }
+        public Photo(Images images)
+        {
+            Images = images;
+        }
+
         public Images Images { get; set; }
     }
 }

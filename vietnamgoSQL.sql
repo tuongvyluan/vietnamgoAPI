@@ -6,17 +6,17 @@ create table Image(
 	height float,
 	url nvarchar(150)
 )
---drop table Location
+drop table Location
 create table Location(
 	location_id int primary key,
 	name nvarchar(150),
 	raw_ranking int default 5 not null,
 	rating float default 0 not null,
 	ranking nvarchar(150),
-	description nvarchar(150),
-	address nvarchar(150),
+	description nvarchar(1000),
+	address nvarchar(250),
 )
---drop table Review
+drop table Review
 create table Review(
 	review_id int identity primary key,
 	location_id int references Location(location_id),
@@ -28,7 +28,7 @@ create table Review(
 	summary nvarchar(500),
 	author nvarchar(50)
 )
---drop table LocationImages
+drop table LocationImages
 create table LocationImages(
 	location_id int primary key references Location(location_id) on delete cascade on update cascade,
 	smallId int references Image(id),
@@ -55,7 +55,7 @@ create table TourGuide(
 	middleName nvarchar(30),
 	lastName nvarchar(20)
 )
-
+drop table Tour
 create table Tour(
 	id int identity primary key,
 	tourGuideId int references TourGuide(id),

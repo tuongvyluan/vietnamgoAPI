@@ -9,7 +9,7 @@ public partial class Tour
 
     public int? TourGuideId { get; set; }
 
-    public int? LocationId { get; set; }
+    public int LocationId { get; set; }
 
     public string? Name { get; set; }
 
@@ -17,7 +17,7 @@ public partial class Tour
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
-    public virtual Location? Location { get; set; }
+    public virtual Location Location { get; set; } = null!;
 
     public virtual TourGuide? TourGuide { get; set; }
 }

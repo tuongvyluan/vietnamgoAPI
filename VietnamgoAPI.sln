@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VietnamgoAPI", "VietnamgoAPI\VietnamgoAPI.csproj", "{8A493331-2316-476D-A813-C770BC38C042}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VietnamgoAPI", "VietnamgoAPI\VietnamgoAPI.csproj", "{8A493331-2316-476D-A813-C770BC38C042}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessObjects", "BusinessObjects\BusinessObjects.csproj", "{AA49A6AA-0CDE-4DF1-9139-A9EE32C8F2FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObjects", "BusinessObjects\BusinessObjects.csproj", "{AA49A6AA-0CDE-4DF1-9139-A9EE32C8F2FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTOs\DTOs.csproj", "{9AB17A87-A871-421C-9E6E-F0669FC18111}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTOs", "DTOs\DTOs.csproj", "{9AB17A87-A871-421C-9E6E-F0669FC18111}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{73AE0CDE-050C-4A05-ADD8-C58AA0370866}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{4162FE80-ECBC-4458-98C2-09C415EB1C6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{9AB17A87-A871-421C-9E6E-F0669FC18111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AB17A87-A871-421C-9E6E-F0669FC18111}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AB17A87-A871-421C-9E6E-F0669FC18111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73AE0CDE-050C-4A05-ADD8-C58AA0370866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73AE0CDE-050C-4A05-ADD8-C58AA0370866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73AE0CDE-050C-4A05-ADD8-C58AA0370866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73AE0CDE-050C-4A05-ADD8-C58AA0370866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4162FE80-ECBC-4458-98C2-09C415EB1C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4162FE80-ECBC-4458-98C2-09C415EB1C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4162FE80-ECBC-4458-98C2-09C415EB1C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4162FE80-ECBC-4458-98C2-09C415EB1C6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

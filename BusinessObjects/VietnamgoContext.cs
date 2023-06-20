@@ -39,7 +39,7 @@ public partial class VietnamgoContext : DbContext
     {
         modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Booking__3213E83F0348D532");
+            entity.HasKey(e => e.Id).HasName("PK__Booking__3213E83F1F5936B6");
 
             entity.ToTable("Booking");
 
@@ -63,11 +63,11 @@ public partial class VietnamgoContext : DbContext
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("FK__Booking__custome__2FCF1A8A");
+                .HasConstraintName("FK__Booking__custome__671F4F74");
 
             entity.HasOne(d => d.Tour).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.TourId)
-                .HasConstraintName("FK__Booking__tourId__30C33EC3");
+                .HasConstraintName("FK__Booking__tourId__681373AD");
         });
 
         modelBuilder.Entity<Customer>(entity =>
@@ -112,7 +112,7 @@ public partial class VietnamgoContext : DbContext
 
         modelBuilder.Entity<Location>(entity =>
         {
-            entity.HasKey(e => e.LocationId).HasName("PK__Location__771831EAFF504C22");
+            entity.HasKey(e => e.LocationId).HasName("PK__Location__771831EAF6B81F91");
 
             entity.ToTable("Location");
 
@@ -120,10 +120,10 @@ public partial class VietnamgoContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("location_id");
             entity.Property(e => e.Address)
-                .HasMaxLength(150)
+                .HasMaxLength(250)
                 .HasColumnName("address");
             entity.Property(e => e.Description)
-                .HasMaxLength(150)
+                .HasMaxLength(1000)
                 .HasColumnName("description");
             entity.Property(e => e.Name)
                 .HasMaxLength(150)
@@ -139,7 +139,7 @@ public partial class VietnamgoContext : DbContext
 
         modelBuilder.Entity<LocationImage>(entity =>
         {
-            entity.HasKey(e => e.LocationId).HasName("PK__Location__771831EA8D2D970D");
+            entity.HasKey(e => e.LocationId).HasName("PK__Location__771831EA6CAEB09D");
 
             entity.Property(e => e.LocationId)
                 .ValueGeneratedNever()
@@ -152,32 +152,32 @@ public partial class VietnamgoContext : DbContext
 
             entity.HasOne(d => d.Large).WithMany(p => p.LocationImageLarges)
                 .HasForeignKey(d => d.LargeId)
-                .HasConstraintName("FK__LocationI__large__160F4887");
+                .HasConstraintName("FK__LocationI__large__47A6A41B");
 
             entity.HasOne(d => d.Location).WithOne(p => p.LocationImage)
                 .HasForeignKey<LocationImage>(d => d.LocationId)
-                .HasConstraintName("FK__LocationI__locat__1332DBDC");
+                .HasConstraintName("FK__LocationI__locat__44CA3770");
 
             entity.HasOne(d => d.Medium).WithMany(p => p.LocationImageMedia)
                 .HasForeignKey(d => d.MediumId)
-                .HasConstraintName("FK__LocationI__mediu__151B244E");
+                .HasConstraintName("FK__LocationI__mediu__46B27FE2");
 
             entity.HasOne(d => d.Original).WithMany(p => p.LocationImageOriginals)
                 .HasForeignKey(d => d.OriginalId)
-                .HasConstraintName("FK__LocationI__origi__17036CC0");
+                .HasConstraintName("FK__LocationI__origi__489AC854");
 
             entity.HasOne(d => d.Small).WithMany(p => p.LocationImageSmalls)
                 .HasForeignKey(d => d.SmallId)
-                .HasConstraintName("FK__LocationI__small__14270015");
+                .HasConstraintName("FK__LocationI__small__45BE5BA9");
 
             entity.HasOne(d => d.Thumbnail).WithMany(p => p.LocationImageThumbnails)
                 .HasForeignKey(d => d.ThumbnailId)
-                .HasConstraintName("FK__LocationI__thumb__17F790F9");
+                .HasConstraintName("FK__LocationI__thumb__498EEC8D");
         });
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ReviewId).HasName("PK__Review__60883D90EE549580");
+            entity.HasKey(e => e.ReviewId).HasName("PK__Review__60883D90F60DFCF4");
 
             entity.ToTable("Review");
 
@@ -206,12 +206,12 @@ public partial class VietnamgoContext : DbContext
 
             entity.HasOne(d => d.Location).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.LocationId)
-                .HasConstraintName("FK__Review__location__0E6E26BF");
+                .HasConstraintName("FK__Review__location__40058253");
         });
 
         modelBuilder.Entity<Tour>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Tour__3213E83FC5DD0080");
+            entity.HasKey(e => e.Id).HasName("PK__Tour__3213E83FD931E6AE");
 
             entity.ToTable("Tour");
 
@@ -227,11 +227,12 @@ public partial class VietnamgoContext : DbContext
 
             entity.HasOne(d => d.Location).WithMany(p => p.Tours)
                 .HasForeignKey(d => d.LocationId)
-                .HasConstraintName("FK__Tour__locationId__236943A5");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Tour__locationId__634EBE90");
 
             entity.HasOne(d => d.TourGuide).WithMany(p => p.Tours)
                 .HasForeignKey(d => d.TourGuideId)
-                .HasConstraintName("FK__Tour__tourGuideI__22751F6C");
+                .HasConstraintName("FK__Tour__tourGuideI__625A9A57");
         });
 
         modelBuilder.Entity<TourGuide>(entity =>
