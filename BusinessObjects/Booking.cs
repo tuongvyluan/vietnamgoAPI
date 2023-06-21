@@ -11,6 +11,8 @@ public partial class Booking
 
     public int? TourId { get; set; }
 
+    public int? TouristNum { get; set; }
+
     public double? Discount { get; set; }
 
     public bool PaymentStatus { get; set; }

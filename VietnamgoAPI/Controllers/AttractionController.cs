@@ -1,4 +1,5 @@
 ﻿using DTOs;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Repositories;
 
@@ -6,6 +7,7 @@ namespace VietnamgoAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors]
     public class AttractionController : ControllerBase
     {
         [HttpGet]
@@ -21,7 +23,7 @@ namespace VietnamgoAPI.Controllers
             response.CalculatePaging();
             return Ok(response);
         }
-        [HttpGet("id:int")]
+        [HttpGet("{id:int}")]
         public ActionResult GetAttraction(int id)
         {
             Attraction attraction = LocationRepository.GetLocation(id);

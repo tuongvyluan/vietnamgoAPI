@@ -23,6 +23,7 @@ namespace DTOs
             Rating = l.Rating;
             Address = l.Address;
             LocationImage = l.LocationImage;
+            Tours = l.Tours;
             Reviews = new List<Review>();
             Subtype = new List<Subtype>();
             Subtype.Add(new Subtype());

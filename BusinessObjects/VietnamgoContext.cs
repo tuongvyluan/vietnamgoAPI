@@ -39,7 +39,7 @@ public partial class VietnamgoContext : DbContext
     {
         modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Booking__3213E83F1F5936B6");
+            entity.HasKey(e => e.Id).HasName("PK__Booking__3213E83FAD05241D");
 
             entity.ToTable("Booking");
 
@@ -54,6 +54,9 @@ public partial class VietnamgoContext : DbContext
                 .HasColumnName("paymentDate");
             entity.Property(e => e.PaymentStatus).HasColumnName("paymentStatus");
             entity.Property(e => e.TourId).HasColumnName("tourId");
+            entity.Property(e => e.TouristNum)
+                .HasDefaultValueSql("((1))")
+                .HasColumnName("touristNum");
             entity.Property(e => e.TripDate)
                 .HasColumnType("datetime")
                 .HasColumnName("tripDate");
@@ -63,11 +66,11 @@ public partial class VietnamgoContext : DbContext
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("FK__Booking__custome__671F4F74");
+                .HasConstraintName("FK__Booking__custome__7A3223E8");
 
             entity.HasOne(d => d.Tour).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.TourId)
-                .HasConstraintName("FK__Booking__tourId__681373AD");
+                .HasConstraintName("FK__Booking__tourId__7B264821");
         });
 
         modelBuilder.Entity<Customer>(entity =>
@@ -211,28 +214,34 @@ public partial class VietnamgoContext : DbContext
 
         modelBuilder.Entity<Tour>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Tour__3213E83FD931E6AE");
+            entity.HasKey(e => e.Id).HasName("PK__Tour__3213E83F5988E2E7");
 
             entity.ToTable("Tour");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.LocationId).HasColumnName("locationId");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .HasColumnName("name");
             entity.Property(e => e.Price)
                 .HasColumnType("money")
                 .HasColumnName("price");
+            entity.Property(e => e.TourDescription)
+                .HasMaxLength(500)
+                .HasColumnName("tourDescription");
             entity.Property(e => e.TourGuideId).HasColumnName("tourGuideId");
+            entity.Property(e => e.TourName)
+                .HasMaxLength(50)
+                .HasColumnName("tourName");
+            entity.Property(e => e.TourTime)
+                .HasMaxLength(20)
+                .HasColumnName("tourTime");
 
             entity.HasOne(d => d.Location).WithMany(p => p.Tours)
                 .HasForeignKey(d => d.LocationId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Tour__locationId__634EBE90");
+                .HasConstraintName("FK__Tour__locationId__76619304");
 
             entity.HasOne(d => d.TourGuide).WithMany(p => p.Tours)
                 .HasForeignKey(d => d.TourGuideId)
-                .HasConstraintName("FK__Tour__tourGuideI__625A9A57");
+                .HasConstraintName("FK__Tour__tourGuideI__756D6ECB");
         });
 
         modelBuilder.Entity<TourGuide>(entity =>

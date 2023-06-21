@@ -11,7 +11,11 @@ public partial class Tour
 
     public int LocationId { get; set; }
 
-    public string? Name { get; set; }
+    public string? TourName { get; set; }
+
+    public string? TourDescription { get; set; }
+
+    public string? TourTime { get; set; }
 
     public decimal Price { get; set; }
 
