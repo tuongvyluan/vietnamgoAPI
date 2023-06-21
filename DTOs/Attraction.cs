@@ -6,6 +6,23 @@ namespace DTOs
     {
         public Attraction()
         {
+            RawRanking = 5;
+            Reviews = new List<Review>();
+            Subtype = new List<Subtype>();
+            Subtype.Add(new Subtype());
+            Photo = new Photo();
+        }
+        public Attraction(Location l)
+        {
+            LocationId = l.LocationId;
+            RawRanking = 5;
+            Description = l.Description;
+            LocationImage = l.LocationImage;
+            Ranking = l.Ranking;
+            Name = l.Name;
+            Rating = l.Rating;
+            Address = l.Address;
+            LocationImage = l.LocationImage;
             Reviews = new List<Review>();
             Subtype = new List<Subtype>();
             Subtype.Add(new Subtype());

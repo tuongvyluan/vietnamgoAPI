@@ -6,25 +6,29 @@ namespace DTOs
     {
         public Images()
         {
-            Small = new Image();
-            Medium = new Image();
-            Large = new Image();
-            Thumbnail = new Image();
-            Original = new Image();
+            Small = new ImageDTO();
+            Medium = new ImageDTO();
+            Large = new ImageDTO();
+            Thumbnail = new ImageDTO();
+            Original = new ImageDTO();
         }
-        public Image Small { get; set; }
-        public Image Medium { get; set; }
-        public Image Large { get; set; }
-        public Image Thumbnail { get; set; }
-        public Image Original { get; set; }
+        public ImageDTO Small { get; set; }
+        public ImageDTO Medium { get; set; }
+        public ImageDTO Large { get; set; }
+        public ImageDTO Thumbnail { get; set; }
+        public ImageDTO Original { get; set; }
         public static Images ToImages(LocationImage locationImage)
         {
+            if (locationImage == null)
+            {
+                return null;
+            }
             Images res = new Images();
-            res.Small = locationImage.Small != null ? locationImage.Small : new Image();
-            res.Medium = locationImage.Medium != null ? locationImage.Medium : new Image();
-            res.Large = locationImage.Large != null ? locationImage.Large : new Image();
-            res.Thumbnail = locationImage.Thumbnail != null ? locationImage.Thumbnail : new Image();
-            res.Original = locationImage.Original != null ? locationImage.Original : new Image();
+            res.Small = locationImage.Small != null ? ImageDTO.ToDTO(locationImage.Small) : new ImageDTO();
+            res.Medium = locationImage.Medium != null ? ImageDTO.ToDTO(locationImage.Medium) : new ImageDTO();
+            res.Large = locationImage.Large != null ? ImageDTO.ToDTO(locationImage.Large) : new ImageDTO();
+            res.Thumbnail = locationImage.Thumbnail != null ? ImageDTO.ToDTO(locationImage.Thumbnail) : new ImageDTO();
+            res.Original = locationImage.Original != null ? ImageDTO.ToDTO(locationImage.Original) : new ImageDTO();
             return res;
 
         }

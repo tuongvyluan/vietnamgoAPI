@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace Repositories
@@ -35,7 +36,7 @@ namespace Repositories
                 throw new Exception(ex.Message);
             }
         }
-        public static Location GetLocation(int id)
+        public static Attraction GetLocation(int id)
         {
             Location Location = new Location();
             try
@@ -49,7 +50,32 @@ namespace Repositories
             {
                 throw new Exception(ex.Message);
             }
-            return Location;
+            return new Attraction(Location);
+        }
+        public static List<Attraction> GetAttractions()
+        {
+            Location Location = new Location();
+            try
+            {
+                using (var _context = new VietnamgoContext())
+                {
+                    var locations = _context.Locations.ToList();
+                    if (locations == null)
+                    {
+                        locations = new List<Location>();
+                    }
+                    List<Attraction> result = new List<Attraction>();
+                    foreach (Location l in locations)
+                    {
+                        result.Add(new Attraction(l));
+                    }
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

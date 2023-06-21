@@ -37,25 +37,29 @@ namespace Repositories
         }
         public static LocationImage GetLocationImageByLocationId(int locationId)
         {
-            LocationImage LocationImage = new LocationImage();
             try
             {
                 using (var _context = new VietnamgoContext())
                 {
-                    var f = _context.LocationImages.SingleOrDefault(p => p.LocationId == locationId);
-                    f.Large = _context.Images.FirstOrDefault(i => i.Id == f.LargeId);
-                    f.Medium = _context.Images.FirstOrDefault(i => i.Id == f.MediumId);
-                    f.Small = _context.Images.FirstOrDefault(i => i.Id == f.SmallId);
-                    f.Original = _context.Images.FirstOrDefault(i => i.Id == f.OriginalId);
-                    f.Thumbnail = _context.Images.FirstOrDefault(i => i.Id == f.ThumbnailId);
-
+                    LocationImage res = new LocationImage();
+                    var l = _context.LocationImages
+                        .Include(d => d.Large)
+                        .Include(d => d.Small)
+                        .Include(d => d.Medium)
+                        .Include(d => d.Original)
+                        .Include(d => d.Thumbnail)
+                        .FirstOrDefault(p => p.LocationId == locationId);
+                    if (l == null)
+                    {
+                        return res;
+                    }
+                    return l;
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return LocationImage;
         }
     }
 }
