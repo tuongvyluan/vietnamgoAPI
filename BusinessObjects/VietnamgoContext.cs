@@ -39,11 +39,14 @@ public partial class VietnamgoContext : DbContext
     {
         modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Booking__3213E83FAD05241D");
+            entity.HasKey(e => e.Id).HasName("PK__Booking__3213E83FBCE5FF7C");
 
             entity.ToTable("Booking");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasMaxLength(12)
+                .IsUnicode(false)
+                .HasColumnName("id");
             entity.Property(e => e.BookingDate)
                 .HasColumnType("datetime")
                 .HasColumnName("bookingDate");
@@ -66,11 +69,11 @@ public partial class VietnamgoContext : DbContext
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("FK__Booking__custome__7A3223E8");
+                .HasConstraintName("FK__Booking__custome__0880433F");
 
             entity.HasOne(d => d.Tour).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.TourId)
-                .HasConstraintName("FK__Booking__tourId__7B264821");
+                .HasConstraintName("FK__Booking__tourId__09746778");
         });
 
         modelBuilder.Entity<Customer>(entity =>

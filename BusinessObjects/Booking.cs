@@ -5,7 +5,7 @@ namespace BusinessObjects;
 
 public partial class Booking
 {
-    public int Id { get; set; }
+    public string Id { get; set; } = null!;
 
     public int? CustomerId { get; set; }
 
