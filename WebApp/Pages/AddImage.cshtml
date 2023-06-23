@@ -1,0 +1,55 @@
+﻿@page
+@model WebApp.Pages.AddImageModel
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Upload</title>
+</head>
+<body>
+    <h1>Uploaded Image</h1>
+    <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="imgLarge.Url" class="control-label">Add large picture link</label>
+                <input asp-for="imgLarge.Url" class="form-control" />
+                <span asp-validation-for="imgLarge.Url" class="text-danger"></span>
+                   @if(Model.displayImgLarge != null){
+    <div class="result">
+        <p>Link hinh: @Url.Content(Model.displayImgLarge.Url)</p>
+        <img src="@Url.Content(Model.displayImgLarge.Url)" alt="img"  style="width=900px"/> 
+    </div>
+    }
+            </div>
+                <div class="form-group">
+                <label asp-for="imgSmall.Url" class="control-label">Add small picture link</label>
+                <input asp-for="imgSmall.Url" class="form-control" />
+                <span asp-validation-for="imgSmall.Url" class="text-danger"></span>
+            </div>
+                    @if(Model.displayImgSmall != null){
+    <div class="result">
+        <p>Link hinh: @Url.Content(Model.displayImgSmall.Url)</p>
+        <img src="@Url.Content(Model.displayImgSmall.Url)" alt="img" style="width=300px"/> 
+    </div>
+    }
+            <div class="form-group">
+                   @if (Model.displayImgSmall == null)
+    {
+         <input type="submit" value="Create" class="btn btn-primary" />
+    }
+               
+            </div>
+        </form>
+
+    @if (Model.displayImgSmall != null)
+    {
+        <div>
+         <a asp-page="./LocationDisplay" class="btn btn-primary">See location</a>
+        </div>
+    }
+
+</body>
+</html>

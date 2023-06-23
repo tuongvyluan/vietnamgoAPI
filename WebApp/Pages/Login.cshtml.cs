@@ -36,9 +36,11 @@ namespace WebApp.Pages
                     .SetBasePath(dir)
                                             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                                             .Build();
+
                 var admin = config.GetSection("Admin");
                 if (admin["Email"].Equals(Account.Email) && admin["Password"].Equals(Account.Password))
                 {
+
                     HttpContext.Session.SetString("Email", admin["Email"]);
                     return RedirectToPage("./Index");
                 }
