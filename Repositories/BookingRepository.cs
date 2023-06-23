@@ -35,14 +35,18 @@ namespace Repositories
                 throw new Exception(ex.Message);
             }
         }
-        public static Booking GetBooking(int id)
+        public static Booking GetBooking(string id)
         {
             Booking Booking = new Booking();
             try
             {
                 using (var _context = new VietnamgoContext())
                 {
-                    var f = _context.Bookings.SingleOrDefault(p => p.Id == id);
+                    var f = _context.Bookings.Include(b => b.Tour).SingleOrDefault(p => p.Id.Equals(id));
+                    if (f != null)
+                    {
+                        Booking = f;
+                    }
                 }
             }
             catch (Exception ex)
@@ -50,6 +54,46 @@ namespace Repositories
                 throw new Exception(ex.Message);
             }
             return Booking;
+        }
+        public static List<Booking> GetBookings()
+        {
+            List<Booking> bookings = new List<Booking>();
+            try
+            {
+                using (var _context = new VietnamgoContext())
+                {
+                    var f = _context.Bookings.Include(b => b.Tour).ToList();
+                    if (f != null)
+                    {
+                        bookings = f;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return bookings;
+        }
+        public static List<Booking> GetBookingsByCustomer(int customerId)
+        {
+            List<Booking> bookings = new List<Booking>();
+            try
+            {
+                using (var _context = new VietnamgoContext())
+                {
+                    var f = _context.Bookings.Include(b => b.Tour.Location.LocationImage.Small).Where(b => b.CustomerId == customerId).OrderByDescending(b => b.BookingDate).ToList();
+                    if (f != null)
+                    {
+                        bookings = f;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return bookings;
         }
     }
 }

@@ -19,6 +19,21 @@ namespace Repositories
                 throw new Exception(ex.Message);
             }
         }
+        public static bool CheckExistEmail(string email)
+        {
+            try
+            {
+                using (var _context = new VietnamgoContext())
+                {
+                    var user = _context.TourGuides.FirstOrDefault(u => u.Email.Equals(email));
+                    return user != null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         public static void Create(TourGuide t)
         {

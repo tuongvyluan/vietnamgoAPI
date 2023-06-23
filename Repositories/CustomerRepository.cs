@@ -5,6 +5,21 @@ namespace Repositories
 {
     public class CustomerRepository
     {
+        public static bool CheckExistEmail(string email)
+        {
+            try
+            {
+                using (var _context = new VietnamgoContext())
+                {
+                    var user = _context.Customers.FirstOrDefault(u => u.Email.Equals(email));
+                    return user != null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public static Customer? Login(Customer account)
         {
             try
@@ -58,6 +73,10 @@ namespace Repositories
                 using (var _context = new VietnamgoContext())
                 {
                     var f = _context.Customers.SingleOrDefault(p => p.Id == id);
+                    if (f != null)
+                    {
+                        Customer = f;
+                    }
                 }
             }
             catch (Exception ex)

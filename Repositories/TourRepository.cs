@@ -43,7 +43,15 @@ namespace Repositories
                 using (var _context = new VietnamgoContext())
                 {
                     var f = _context.Tours.SingleOrDefault(p => p.Id == id);
-                    f.Location = _context.Locations.SingleOrDefault(l => l.LocationId == f.LocationId);
+                    if (f != null)
+                    {
+                        var location = _context.Locations.SingleOrDefault(l => l.LocationId == f.LocationId);
+                        if (location != null)
+                        {
+                            f.Location = location;
+                            Tour = f;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
