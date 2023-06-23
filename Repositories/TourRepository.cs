@@ -75,5 +75,25 @@ namespace Repositories
                 throw new Exception(ex.Message);
             }
         }
+        public static List<Tour> GetToursbyTran(int locationId)
+        {
+            try
+            {
+                using (var _context = new VietnamgoContext())
+                {
+                    List<Tour> tours = _context.Tours.Where(t => t.LocationId == locationId).ToList();
+                    if (tours == null)
+                    {
+                        tours = new List<Tour>();
+                    }
+
+                    return tours;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

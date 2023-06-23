@@ -1,0 +1,70 @@
+﻿@page
+@model Index1Model
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <body>
+    <p>
+    <a asp-page="./AddLocation" class="btn btn-outline-dark">Add Location</a>
+     <a asp-page="./AddTour" class="btn btn-outline-dark">Add Tour</a>
+</p>
+
+     <div class="row card-container">
+            @foreach (var item in Model.Location)
+            {
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                    <div class="card" style="width: 320px; ; margin=10px 10px;">
+                        <img style="height: 220px" src="@Url.Content(item.LocationImage.Thumbnail.Url)" class="card-img-top" alt="...">
+                 <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+            <p style="
+                min-height:72px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;  
+                 overflow: hidden;" class="card-text"> @Html.DisplayFor(modelItem => item.Description)</p>
+            <p class="card-text" style="
+                min-height:72px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;  
+                 overflow: hidden;">  @Html.DisplayFor(modelItem => item.Address)</p>
+            <a asp-page="./Tour" asp-route-id="@item.LocationId" class="btn btn-primary">See all tours </a>
+             </div>
+            </div>
+
+                </div>
+
+             
+            
+          
+            }
+        </div>
+    </body>
+    </head>
+    </html>
+
+
+
+

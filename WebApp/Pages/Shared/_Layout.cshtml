@@ -12,14 +12,18 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">WebApp</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <img src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-6/350371515_908404140234537_1494235485267239992_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=wuT9BLgSGewAX8K2uDi&_nc_ht=scontent.fsgn2-3.fna&oh=00_AfCiPJVxzwbV_tce8NdygW4EEKYhjAWu6XcRgcRumcXMmw&oe=6499B8E7" 
+                    class="card-img-top" alt="VIETNAMGO" style="width: 30px; 
+         height: 30px; 
+        ">VIETNAMGO</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        if (Context.Session.GetString("ID") != null)
+                       @if (Context.Session.GetString("ID") != null)
                         {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Tour">Tour</a>

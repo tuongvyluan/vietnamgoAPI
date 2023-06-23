@@ -1,0 +1,56 @@
+﻿@page
+@model WebApp.Pages.TourModel
+
+@{
+    ViewData["Title"] = "Tour";
+}
+
+<h1>Tour</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tours[0].TourName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tours[0].TourDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tours[0].TourTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tours[0].Price)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Tours) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TourName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TourDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TourTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+           
+
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-page="./Index">Back to Home</a>
+</div>
+

@@ -82,5 +82,43 @@ namespace Repositories
                 throw new Exception(ex.Message);
             }
         }
+        public static List<Location> GetLoacationListByTran()
+        {
+            Location Location = new Location();
+            try
+            {
+                using (var _context = new VietnamgoContext())
+                {
+                    var locations = _context.Locations.Include(P => P.LocationImage.Thumbnail).ToList();
+                    if (locations == null)
+                    {
+                        locations = new List<Location>();
+                    }
+                    return locations;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public static Location GetLocationbyTran(int id)
+        {
+            Location Location = new Location();
+            try
+            {
+                using (var _context = new VietnamgoContext())
+                {
+                    var f = _context.Locations.FirstOrDefault(p => p.LocationId == id);
+                    Location = f;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return Location;
+        }
     }
 }

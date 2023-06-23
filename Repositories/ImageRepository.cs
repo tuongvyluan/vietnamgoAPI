@@ -43,6 +43,10 @@ namespace Repositories
                 using (var _context = new VietnamgoContext())
                 {
                     var f = _context.Images.SingleOrDefault(p => p.Id == id);
+                    if (f != null)
+                    {
+                        Image = f;
+                    }
                 }
             }
             catch (Exception ex)

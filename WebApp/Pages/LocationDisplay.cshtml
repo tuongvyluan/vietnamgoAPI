@@ -1,0 +1,48 @@
+﻿@page
+@model WebApp.Pages.LocationDisplayModel
+
+@{
+    ViewData["Title"] = "LocationDisplay";
+}
+
+<h1>LocationDisplay</h1>
+
+<div>
+    <h4>Location</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location.Address)
+        </dd>
+    </dl>
+</div>
+                @if(Model.displayImgLarge != null){
+    <div class="result">
+        <p>Link hinh: @Url.Content(Model.displayImgLarge.Url)</p>
+        <img src="@Url.Content(Model.displayImgLarge.Url)" alt="img" /> 
+    </div>
+    }
+                        @if(Model.displayImgSmall != null){
+    <div class="result">
+        <p>Link hinh: @Url.Content(Model.displayImgSmall.Url)</p>
+        <img src="@Url.Content(Model.displayImgSmall.Url)" alt="img" /> 
+    </div>
+    }
+<div>
+    <a asp-page="./Index">Back to Home</a>
+</div>
