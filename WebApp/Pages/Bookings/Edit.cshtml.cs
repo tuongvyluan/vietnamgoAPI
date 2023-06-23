@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BusinessObjects;
 
 namespace WebApp.Pages.Bookings
 {
@@ -22,21 +18,21 @@ namespace WebApp.Pages.Bookings
         [BindProperty]
         public Booking Booking { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string? id)
         {
             if (id == null || _context.Bookings == null)
             {
                 return NotFound();
             }
 
-            var booking =  await _context.Bookings.FirstOrDefaultAsync(m => m.Id == id);
+            var booking = await _context.Bookings.FirstOrDefaultAsync(m => m.Id.Equals(id));
             if (booking == null)
             {
                 return NotFound();
             }
             Booking = booking;
-           ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Email");
-           ViewData["TourId"] = new SelectList(_context.Tours, "Id", "Id");
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Email");
+            ViewData["TourId"] = new SelectList(_context.Tours, "Id", "Id");
             return Page();
         }
 
@@ -70,9 +66,9 @@ namespace WebApp.Pages.Bookings
             return RedirectToPage("./Index");
         }
 
-        private bool BookingExists(int id)
+        private bool BookingExists(string id)
         {
-          return (_context.Bookings?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Bookings?.Any(e => e.Id.Equals(id)) != null);
         }
     }
 }

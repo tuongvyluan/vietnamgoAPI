@@ -62,7 +62,7 @@ namespace Repositories
             {
                 using (var _context = new VietnamgoContext())
                 {
-                    var f = _context.Bookings.Include(b => b.Tour).ToList();
+                    var f = _context.Bookings.Include(b => b.Tour).Include(b => b.Customer).ToList();
                     if (f != null)
                     {
                         bookings = f;

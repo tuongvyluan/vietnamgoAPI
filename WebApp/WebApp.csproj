@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Booking\**" />
+    <Content Remove="Pages\Booking\**" />
+    <EmbeddedResource Remove="Pages\Booking\**" />
+    <None Remove="Pages\Booking\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.18">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -27,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Booking\" />
     <Folder Include="Pages\Tour\" />
   </ItemGroup>
 

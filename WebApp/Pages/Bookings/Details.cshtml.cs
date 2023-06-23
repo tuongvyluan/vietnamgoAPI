@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BusinessObjects;
 
 namespace WebApp.Pages.Bookings
 {
@@ -18,21 +14,21 @@ namespace WebApp.Pages.Bookings
             _context = context;
         }
 
-      public Booking Booking { get; set; } = default!; 
+        public Booking Booking { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string? id)
         {
             if (id == null || _context.Bookings == null)
             {
                 return NotFound();
             }
 
-            var booking = await _context.Bookings.FirstOrDefaultAsync(m => m.Id == id);
+            var booking = await _context.Bookings.FirstOrDefaultAsync(m => m.Id.Equals(id));
             if (booking == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Booking = booking;
             }

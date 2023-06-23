@@ -1,7 +1,8 @@
 using BusinessObjects;
+using DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
+using Repositories;
 using System.Net.Http.Headers;
 
 namespace WebApp.Pages
@@ -15,59 +16,34 @@ namespace WebApp.Pages
             client = new HttpClient();
             var contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
-            TourGuideApiUrl = "http://localhost:5000/api/Login";
+            TourGuideApiUrl = "https://localhost:5000/api/Login/TourGuide";
         }
         [BindProperty]
-        public TourGuide Account { get; set; } = default!;
+        public Account Account { get; set; } = default!;
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("Email") != null)
+            if (HttpContext.Session.GetInt32("ID") != null)
             {
                 return RedirectToPage("./Index");
             }
             return Page();
         }
+        [HttpPost]
         public async Task<IActionResult> OnPost()
         {
             try
             {
-                var dir = Directory.GetCurrentDirectory();
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(dir)
-                                            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                                            .Build();
-
-                var admin = config.GetSection("Admin");
-                if (admin["Email"].Equals(Account.Email) && admin["Password"].Equals(Account.Password))
+                TourGuide data = new TourGuide();
+                data.Email = Account.Email;
+                data.Password = Account.Password;
+                var found = TourGuideRepository.Login(data);
+                if (found != null)
                 {
+                    HttpContext.Session.SetInt32("ID", found.Id);
 
-                    HttpContext.Session.SetString("Email", admin["Email"]);
                     return RedirectToPage("./Index");
                 }
-                if (Account != null)
-                {
-                    var myContent = JsonConvert.SerializeObject(Account);
-                    var byteContent = new ByteArrayContent(System.Text.Encoding.UTF8.GetBytes(myContent));
-                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                    HttpResponseMessage response = await client.PostAsync(TourGuideApiUrl, byteContent);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var customerString = await response.Content.ReadAsStringAsync();
-                        TourGuide customer = new TourGuide();
-                        var c = JsonConvert.DeserializeObject<TourGuide>(customerString);
-                        if (c != null)
-                        {
-                            customer = c;
-                        }
-                        if (customer.Email != null)
-                        {
-                            HttpContext.Session.SetInt32("ID", customer.Id);
-
-                            return RedirectToPage("./Index");
-                        }
-                    }
-                }
                 return Page();
             }
             catch (Exception ex)

@@ -23,17 +23,17 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                       @if (Context.Session.GetString("ID") != null)
+                       @if (Context.Session.GetInt32("ID") != null)
                         {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Tour">Tour</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Booking">Booking</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Index">Booking</a>
                         </li>
                         }
                     </ul>
-                    @if (Context.Session.GetString("ID") != null)
+                    @if (Context.Session.GetInt32("ID") != null)
                     {
                             <div class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a>
@@ -48,12 +48,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - WebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

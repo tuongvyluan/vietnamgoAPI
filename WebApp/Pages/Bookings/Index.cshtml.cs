@@ -1,33 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using BusinessObjects;
+using Repositories;
 
 namespace WebApp.Pages.Bookings
 {
     public class IndexModel : PageModel
     {
-        private readonly BusinessObjects.VietnamgoContext _context;
 
-        public IndexModel(BusinessObjects.VietnamgoContext context)
+        public IndexModel()
         {
-            _context = context;
         }
 
-        public IList<Booking> Booking { get;set; } = default!;
+        public List<Booking> Booking { get; set; } = default!;
 
-        public async Task OnGetAsync()
+        public IActionResult OnGet()
         {
-            if (_context.Bookings != null)
-            {
-                Booking = await _context.Bookings
-                .Include(b => b.Customer)
-                .Include(b => b.Tour).ToListAsync();
-            }
+            Booking = BookingRepository.GetBookings();
+            return Page();
         }
     }
 }
