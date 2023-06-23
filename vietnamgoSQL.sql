@@ -73,7 +73,7 @@ create table Booking(
 	touristNum int default 1,
 	discount float,
 	paymentStatus bit default 0 not null,
-	tripStatus bit default 0,
+	tripStatus varchar(10) default 'Pending',
 	bookingDate datetime,
 	tripDate dateTime,
 	paymentDate datetime

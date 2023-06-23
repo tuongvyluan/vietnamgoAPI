@@ -1,30 +1,28 @@
 ﻿using BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+using Repositories;
 
 namespace WebApp.Pages.Bookings
 {
     public class DetailsModel : PageModel
     {
-        private readonly BusinessObjects.VietnamgoContext _context;
 
-        public DetailsModel(BusinessObjects.VietnamgoContext context)
+        public DetailsModel()
         {
-            _context = context;
         }
 
         public Booking Booking { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(string? id)
+        public IActionResult OnGetAsync(string? id)
         {
-            if (id == null || _context.Bookings == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var booking = await _context.Bookings.FirstOrDefaultAsync(m => m.Id.Equals(id));
-            if (booking == null)
+            var booking = BookingRepository.GetBooking(id);
+            if (booking.Customer == null)
             {
                 return NotFound();
             }

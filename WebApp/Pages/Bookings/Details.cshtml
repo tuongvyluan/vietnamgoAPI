@@ -27,13 +27,13 @@
             @Html.DisplayNameFor(model => model.Booking.PaymentStatus)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Booking.PaymentStatus)
+            @Model.Booking.GetPaymentStatus()
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Booking.TripStatus)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Booking.TripStatus)
+            @Model.Booking.TripStatus
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Booking.BookingDate)
@@ -57,13 +57,13 @@
             @Html.DisplayNameFor(model => model.Booking.Customer)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Booking.Customer.Email)
+            @Html.DisplayFor(model => model.Booking.Customer.Email) - @Html.DisplayFor(model => model.Booking.Customer.FirstName) @Html.DisplayFor(model => model.Booking.Customer.LastName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Booking.Tour)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Booking.Tour.Id)
+            @Html.DisplayFor(model => model.Booking.Tour.TourName)
         </dd>
     </dl>
 </div>
