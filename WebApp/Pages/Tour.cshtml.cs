@@ -14,9 +14,16 @@ namespace WebApp.Pages
 
         public IList<Tour> Tours { get; set; } = default!;
 
-        public async Task OnGetAsync(int id)
+        public async Task OnGetAsync(int? id)
         {
-            Tours = TourRepository.GetToursbyTran(id);
+            if (id == null)
+            {
+                Tours = TourRepository.GetTours();
+            }
+            else
+            {
+                Tours = TourRepository.GetToursbyTran((int)id);
+            }
         }
     }
 }
