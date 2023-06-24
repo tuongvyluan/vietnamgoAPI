@@ -47,6 +47,8 @@
                 -webkit-box-orient: vertical;
                  overflow: hidden;">  @Html.DisplayFor(modelItem => item.Address)</p>
                             <a asp-page="./Tour" asp-route-id="@item.LocationId" class="btn btn-primary">See all tours </a>
+                            <a asp-page="./EditLocation" asp-route-id="@item.LocationId" class="btn btn-primary">Update location </a>
+
                         </div>
                     </div>
 
