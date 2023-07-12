@@ -1,5 +1,6 @@
 create database Vietnamgo
 use Vietnamgo
+--drop table Image
 create table Image(
 	id int identity primary key,
 	width float,
@@ -46,7 +47,7 @@ create table Customer(
 	middleName nvarchar(30),
 	lastName nvarchar(20)
 )
-
+--drop table TourGuide
 create table TourGuide(
 	id int identity primary key,
 	email varchar(50) not null,
@@ -65,7 +66,7 @@ create table Tour(
 	tourTime nvarchar(20),
 	price money not null default 0
 )
-drop table Booking
+--drop table Booking
 create table Booking(
 	id varchar(12) primary key,
 	customerId int references Customer(id),

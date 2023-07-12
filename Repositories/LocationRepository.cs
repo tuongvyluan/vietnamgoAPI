@@ -70,9 +70,17 @@ namespace Repositories
                         locations = new List<Location>();
                     }
                     List<Attraction> result = new List<Attraction>();
+                    int total;
+                    double rating;
+                    Attraction a;
                     foreach (Location l in locations)
                     {
-                        result.Add(new Attraction(l));
+                        ReviewRepository.CalculateReview(out total, out rating, l.LocationId);
+                        a = new Attraction(l);
+                        a.Rating = rating;
+                        a.Num_reviews = total;
+                        result.Add(a);
+
                     }
                     return result;
                 }

@@ -32,6 +32,8 @@ namespace VietnamgoAPI.Controllers
                 return NotFound();
             }
             attraction.Photo.Images = Images.ToImages(LocationImageRepository.GetLocationImageByLocationId(attraction.LocationId));
+            attraction.Reviews = ReviewRepository.GetReviewsByAttraction(attraction.LocationId);
+            attraction.CalculateRating();
             return Ok(attraction);
         }
     }
