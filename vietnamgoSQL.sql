@@ -1,4 +1,4 @@
-create database Vietnamgo
+﻿create database Vietnamgo
 use Vietnamgo
 --drop table Image
 create table Image(
@@ -79,3 +79,39 @@ create table Booking(
 	tripDate dateTime,
 	paymentDate datetime
 )
+
+USE [Vietnamgo]
+GO
+SET IDENTITY_INSERT [dbo].[Image] ON 
+
+INSERT [dbo].[Image] ([id], [width], [height], [url]) VALUES (1, NULL, NULL, N'https://ik.imagekit.io/tvlk/blog/2023/04/bao-tang-chung-tich-chien-tranh-1.jpg?tr=dpr-2,w-675')
+INSERT [dbo].[Image] ([id], [width], [height], [url]) VALUES (2, NULL, NULL, N'https://ik.imagekit.io/tvlk/blog/2023/04/bao-tang-chung-tich-chien-tranh-1.jpg?tr=dpr-2,w-675')
+SET IDENTITY_INSERT [dbo].[Image] OFF
+GO
+INSERT [dbo].[Location] ([location_id], [name], [raw_ranking], [rating], [ranking], [description], [address]) VALUES (2200, N'Live with history', 5, 4, N'History Symbol
+', N'Explore Vietnamese history with time flow. From  colonized by French to Independent Day in the war with America', N'Ho Chi Minh City')
+GO
+INSERT [dbo].[LocationImages] ([location_id], [smallId], [mediumId], [largeId], [originalId], [thumbnailId]) VALUES (2200, 2, 2, 1, 1, 2)
+GO
+SET IDENTITY_INSERT [dbo].[Review] ON 
+
+INSERT [dbo].[Review] ([review_id], [location_id], [title], [rating], [published_date], [published_platform], [machine_translated], [summary], [author]) VALUES (1, 2200, N'Good', 4, CAST(N'2023-07-12T23:28:02.337' AS DateTime), NULL, 0, N'Learn a lot about Vietnamese History', N'Nguyễn Trân')
+SET IDENTITY_INSERT [dbo].[Review] OFF
+GO
+SET IDENTITY_INSERT [dbo].[TourGuide] ON 
+
+INSERT [dbo].[TourGuide] ([id], [email], [password], [firstName], [middleName], [lastName]) VALUES (2, N'tran@gmail.com', N'1', N'Tran', N'Nguyen', N'Bao')
+SET IDENTITY_INSERT [dbo].[TourGuide] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Tour] ON 
+
+INSERT [dbo].[Tour] ([id], [tourGuideId], [locationId], [tourName], [tourDescription], [tourTime], [price]) VALUES (2, NULL, 2200, N'Full support ', N'Pick-up Included, without accomodation', N'2 days', 1500000.0000)
+SET IDENTITY_INSERT [dbo].[Tour] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Customer] ON 
+
+INSERT [dbo].[Customer] ([id], [email], [password], [firstName], [middleName], [lastName]) VALUES (1, N'kristenguyenn@gmail.com', N'1', N'Nguyễn', N'Bảo', N'Trân')
+SET IDENTITY_INSERT [dbo].[Customer] OFF
+GO
+INSERT [dbo].[Booking] ([id], [customerId], [tourId], [touristNum], [discount], [paymentStatus], [tripStatus], [bookingDate], [tripDate], [paymentDate]) VALUES (N'DH5585958', 1, 2, 1, 0, 1, N'Completed', CAST(N'2023-07-12T23:28:56.703' AS DateTime), CAST(N'2023-07-12T23:29:00.000' AS DateTime), CAST(N'2023-07-12T23:29:37.107' AS DateTime))
+GO
